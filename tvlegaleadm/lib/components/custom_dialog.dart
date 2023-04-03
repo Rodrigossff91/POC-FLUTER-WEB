@@ -46,8 +46,10 @@ class _CustomDialogState extends State<CustomDialog> {
           itemBuilder: (context, index) {
             return GestureDetector(
                 onTap: () {
-                  Get.find<TvController>()
-                      .setComponents(component: _imageUrls[index]);
+                  Get.find<TvController>().setComponents(
+                      componentt: _imageUrls[index],
+                      positionX: 100,
+                      positionY: 100);
                   Get.back();
                 },
                 child: Center(child: _imageUrls[index]));

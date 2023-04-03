@@ -161,7 +161,9 @@ class _ScreenTvDetailsCustomState extends State<ScreenTvDetailsCustom> {
                                         onTap: () {
                                           Get.find<TvController>()
                                               .setComponents(
-                                            component: Container(
+                                            positionX: 100,
+                                            positionY: 100,
+                                            componentt: Container(
                                               color: Colors.green,
                                               width: 50,
                                               height: 50,
@@ -210,26 +212,40 @@ class _ScreenTvDetailsCustomState extends State<ScreenTvDetailsCustom> {
                                         // print(e);
                                         _offset = details.delta;
                                         _posicao = _posicao + _offset;
+                                        tvController.atualizar(
+                                            id: e.id!,
+                                            x: _posicao.dx,
+                                            y: _posicao.dy);
                                         print(_posicao);
                                       });
                                     },
-                                    child: e),
+                                    child: e.component),
                                 child: GestureDetector(
                                   onPanUpdate: (details) {
                                     setState(() {
                                       //     print(e);
                                       _offset = details.delta;
                                       _posicao = _posicao + _offset;
+                                      tvController.atualizar(
+                                          id: e.id!,
+                                          x: _posicao.dx,
+                                          y: _posicao.dy);
 
                                       print(_posicao);
                                     });
                                   },
                                   child: Padding(
                                     padding: EdgeInsets.only(
-                                      top: _posicao.dy,
-                                      left: _posicao.dx,
+                                      top: tvController.components
+                                          .firstWhere(
+                                              (element) => element.id == e.id)
+                                          .positionY!,
+                                      left: tvController.components
+                                          .firstWhere(
+                                              (element) => element.id == e.id)
+                                          .positionX!,
                                     ),
-                                    child: e,
+                                    child: e.component,
                                   ),
                                 ),
                                 feedback: const SizedBox.shrink());
