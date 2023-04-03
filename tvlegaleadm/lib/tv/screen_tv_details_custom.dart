@@ -205,50 +205,32 @@ class _ScreenTvDetailsCustomState extends State<ScreenTvDetailsCustom> {
                             border: Border.all(color: Colors.grey[300]!)),
                         child: Wrap(
                           children: tvController.components.map((e) {
-                            return Draggable(
-                                data: GestureDetector(
-                                    onPanUpdate: (details) {
-                                      setState(() {
-                                        // print(e);
-                                        _offset = details.delta;
-                                        _posicao = _posicao + _offset;
-                                        tvController.atualizar(
-                                            id: e.id!,
-                                            x: _posicao.dx,
-                                            y: _posicao.dy);
-                                        print(_posicao);
-                                      });
-                                    },
-                                    child: e.component),
-                                child: GestureDetector(
-                                  onPanUpdate: (details) {
-                                    setState(() {
-                                      //     print(e);
-                                      _offset = details.delta;
-                                      _posicao = _posicao + _offset;
-                                      tvController.atualizar(
-                                          id: e.id!,
-                                          x: _posicao.dx,
-                                          y: _posicao.dy);
-
-                                      print(_posicao);
-                                    });
-                                  },
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                      top: tvController.components
-                                          .firstWhere(
-                                              (element) => element.id == e.id)
-                                          .positionY!,
-                                      left: tvController.components
-                                          .firstWhere(
-                                              (element) => element.id == e.id)
-                                          .positionX!,
-                                    ),
-                                    child: e.component,
-                                  ),
+                            return GestureDetector(
+                              onPanUpdate: (details) {
+                                setState(() {
+                                  //     print(e);
+                                  _offset = details.delta;
+                                  _posicao = _posicao + _offset;
+                                  tvController.atualizar(
+                                      id: e.id!,
+                                      x: _posicao.dx,
+                                      y: _posicao.dy);
+                                });
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                  top: tvController.components
+                                      .firstWhere(
+                                          (element) => element.id == e.id)
+                                      .positionY!,
+                                  left: tvController.components
+                                      .firstWhere(
+                                          (element) => element.id == e.id)
+                                      .positionX!,
                                 ),
-                                feedback: const SizedBox.shrink());
+                                child: e.component,
+                              ),
+                            );
                           }).toList(),
                         ),
 
