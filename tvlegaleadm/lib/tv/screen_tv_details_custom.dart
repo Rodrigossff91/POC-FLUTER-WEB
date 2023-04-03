@@ -254,6 +254,7 @@ class _ScreenTvDetailsCustomState extends State<ScreenTvDetailsCustom> {
                           ),
                         ),
                       ),
+
                       GestureDetector(
                         onPanUpdate: (details) {
                           setState(() {
