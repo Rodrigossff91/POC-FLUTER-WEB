@@ -22,6 +22,7 @@ class _ScreenTvDetailsCustomState extends State<ScreenTvDetailsCustom> {
   Offset _offset = Offset.zero;
   Offset _posicao = Offset(0, 0);
   Offset _posicao2 = Offset(0, 0);
+  Offset _posicao3 = Offset(0, 0);
 
   @override
   void initState() {
@@ -190,8 +191,9 @@ class _ScreenTvDetailsCustomState extends State<ScreenTvDetailsCustom> {
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Container(
-                  height: Get.height * 0.80,
-                  width: Get.width * 0.60,
+                  padding: EdgeInsets.all(0),
+                  height: 800,
+                  width: 1100,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
@@ -206,12 +208,18 @@ class _ScreenTvDetailsCustomState extends State<ScreenTvDetailsCustom> {
                             _posicao = _posicao + _offset;
                             // tvController.atualizar(
                             //     id: e.id!, x: _posicao.dx, y: _posicao.dy);
+                            print(_posicao.dx);
                           });
                         },
                         child: Padding(
                           padding: EdgeInsets.only(
-                              top: _posicao.dy.isNegative ? 10 : _posicao.dy,
-                              left: _posicao.dx.isNegative ? 10 : _posicao.dx),
+                            top: _posicao.dy.isNegative ? 10 : _posicao.dy,
+                            left: _posicao.dx.isNegative
+                                ? 10
+                                : _posicao.dx > 293
+                                    ? 290
+                                    : _posicao.dx,
+                          ),
                           child: Container(
                             width: 800,
                             height: 300,
@@ -227,18 +235,49 @@ class _ScreenTvDetailsCustomState extends State<ScreenTvDetailsCustom> {
                             _posicao2 = _posicao2 + _offset;
                             // tvController.atualizar(
                             //     id: e.id!, x: _posicao.dx, y: _posicao.dy);
-                            print(_posicao2.dx);
+                            //         print(_posicao2.dy);
                           });
                         },
                         child: Padding(
                           padding: EdgeInsets.only(
-                              top: _posicao2.dy.isNegative ? 10 : _posicao2.dy,
-                              left:
-                                  _posicao2.dx.isNegative ? 10 : _posicao2.dx),
+                            top: _posicao2.dy.isNegative ? 10 : _posicao2.dy,
+                            left: _posicao2.dx.isNegative
+                                ? 10
+                                : _posicao2.dx > 1000
+                                    ? 990
+                                    : _posicao2.dx,
+                          ),
                           child: Container(
                             width: 100,
                             height: 700,
                             color: Colors.blue,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onPanUpdate: (details) {
+                          setState(() {
+                            //     print(e);
+                            _offset = details.delta;
+                            _posicao3 = _posicao3 + _offset;
+                            // tvController.atualizar(
+                            //     id: e.id!, x: _posicao.dx, y: _posicao.dy);
+                            //         print(_posicao2.dy);
+                          });
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            top: _posicao3.dy.isNegative ? 10 : _posicao3.dy,
+                            left: _posicao3.dx.isNegative
+                                ? 10
+                                : _posicao3.dx > 1000
+                                    ? 990
+                                    : _posicao3.dx,
+                          ),
+                          child: Container(
+                            width: 100,
+                            height: 700,
+                            color: Colors.green,
                           ),
                         ),
                       )
