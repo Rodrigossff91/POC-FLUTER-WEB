@@ -20,9 +20,9 @@ class _ScreenTvDetailsCustomState extends State<ScreenTvDetailsCustom> {
   double left = 0.0;
 
   Offset _offset = Offset.zero;
-  Offset _posicao = Offset(0, 0);
-  Offset _posicao2 = Offset(0, 0);
-  Offset _posicao3 = Offset(0, 0);
+  Offset _posicao = Offset(50, 50);
+  Offset _posicao2 = Offset(100, 100);
+  Offset _posicao3 = Offset(200, 200);
 
   @override
   void initState() {
@@ -102,7 +102,7 @@ class _ScreenTvDetailsCustomState extends State<ScreenTvDetailsCustom> {
         //     ));
 
         GetBuilder<TvController>(builder: (TvController tvController) {
-      return Stack(
+      return Row(
         children: [
           Container(
               height: Get.height,
@@ -185,164 +185,161 @@ class _ScreenTvDetailsCustomState extends State<ScreenTvDetailsCustom> {
                               }).toList()))),
                 ],
               )),
-          Positioned(
-              right: 300,
-              top: 40,
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                  padding: EdgeInsets.all(0),
-                  height: 800,
-                  width: 1100,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.grey[300]!)),
-                  child: Stack(
-                    children: [
-                      GestureDetector(
-                        onPanUpdate: (details) {
-                          setState(() {
-                            //     print(e);
-                            _offset = details.delta;
-                            _posicao = _posicao + _offset;
-                            // tvController.atualizar(
-                            //     id: e.id!, x: _posicao.dx, y: _posicao.dy);
-                            print(_posicao.dx);
-                          });
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            top: _posicao.dy.isNegative ? 10 : _posicao.dy,
-                            left: _posicao.dx.isNegative
-                                ? 10
-                                : _posicao.dx > 293
-                                    ? 290
-                                    : _posicao.dx,
-                          ),
-                          child: Container(
-                            width: 800,
-                            height: 300,
-                            color: Colors.red,
-                          ),
-                        ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              padding: EdgeInsets.all(0),
+              height: 800,
+              width: 1100,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: Colors.grey[300]!)),
+              child: Stack(
+                children: [
+                  GestureDetector(
+                    onPanUpdate: (details) {
+                      setState(() {
+                        //     print(e);
+                        _offset = details.delta;
+                        _posicao = _posicao + _offset;
+                        // tvController.atualizar(
+                        //     id: e.id!, x: _posicao.dx, y: _posicao.dy);
+                        print(_posicao.dx);
+                      });
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: _posicao.dy.isNegative ? 10 : _posicao.dy,
+                        left: _posicao.dx.isNegative
+                            ? 10
+                            : _posicao.dx > 293
+                                ? 290
+                                : _posicao.dx,
                       ),
-                      GestureDetector(
-                        onPanUpdate: (details) {
-                          setState(() {
-                            //     print(e);
-                            _offset = details.delta;
-                            _posicao2 = _posicao2 + _offset;
-                            // tvController.atualizar(
-                            //     id: e.id!, x: _posicao.dx, y: _posicao.dy);
-                            //         print(_posicao2.dy);
-                          });
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            top: _posicao2.dy.isNegative ? 10 : _posicao2.dy,
-                            left: _posicao2.dx.isNegative
-                                ? 10
-                                : _posicao2.dx > 1000
-                                    ? 990
-                                    : _posicao2.dx,
-                          ),
-                          child: Container(
-                            width: 100,
-                            height: 700,
-                            color: Colors.blue,
-                          ),
-                        ),
+                      child: Container(
+                        width: 800,
+                        height: 300,
+                        color: Colors.red,
                       ),
-
-                      GestureDetector(
-                        onPanUpdate: (details) {
-                          setState(() {
-                            //     print(e);
-                            _offset = details.delta;
-                            _posicao3 = _posicao3 + _offset;
-                            // tvController.atualizar(
-                            //     id: e.id!, x: _posicao.dx, y: _posicao.dy);
-                            //         print(_posicao2.dy);
-                          });
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            top: _posicao3.dy.isNegative ? 10 : _posicao3.dy,
-                            left: _posicao3.dx.isNegative
-                                ? 10
-                                : _posicao3.dx > 1000
-                                    ? 990
-                                    : _posicao3.dx,
-                          ),
-                          child: Container(
-                            width: 100,
-                            height: 700,
-                            color: Colors.green,
-                          ),
-                        ),
-                      )
-
-                      // Wrap(
-                      //   children: tvController.components.map((e) {
-                      //     return GestureDetector(
-                      //       onPanUpdate: (details) {
-                      //         setState(() {
-                      //           //     print(e);
-                      //           _offset = details.delta;
-                      //           _posicao = _posicao + _offset;
-                      //           tvController.atualizar(
-                      //               id: e.id!, x: _posicao.dx, y: _posicao.dy);
-                      //         });
-                      //       },
-                      //       child: Padding(
-                      //         padding: EdgeInsets.only(
-                      //             top: tvController.components
-                      //                     .firstWhere(
-                      //                         (element) => element.id == e.id)
-                      //                     .positionY!
-                      //                     .isNegative
-                      //                 ? 100
-                      //                 : tvController.components
-                      //                     .firstWhere(
-                      //                         (element) => element.id == e.id)
-                      //                     .positionY!,
-                      //             left: tvController.components
-                      //                     .firstWhere(
-                      //                         (element) => element.id == e.id)
-                      //                     .positionX!
-                      //                     .isNegative
-                      //                 ? 100
-                      //                 : tvController.components
-                      //                     .firstWhere(
-                      //                         (element) => element.id == e.id)
-                      //                     .positionX!),
-                      //         child: e.component,
-                      //       ),
-                      //     );
-                      //   }).toList(),
-                      // ),
-                    ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onPanUpdate: (details) {
+                      setState(() {
+                        //     print(e);
+                        _offset = details.delta;
+                        _posicao2 = _posicao2 + _offset;
+                        // tvController.atualizar(
+                        //     id: e.id!, x: _posicao.dx, y: _posicao.dy);
+                        //         print(_posicao2.dy);
+                      });
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: _posicao2.dy.isNegative ? 10 : _posicao2.dy,
+                        left: _posicao2.dx.isNegative
+                            ? 10
+                            : _posicao2.dx > 1000
+                                ? 990
+                                : _posicao2.dx,
+                      ),
+                      child: Container(
+                        width: 100,
+                        height: 700,
+                        color: Colors.blue,
+                      ),
+                    ),
                   ),
 
-                  //  Expanded(
-                  //   child: ListView.builder(
-                  //     itemCount: tvController.components.length,
-                  //     scrollDirection: Axis.horizontal,
-                  //     physics: NeverScrollableScrollPhysics(),
-                  //     shrinkWrap: true,
-                  //     itemBuilder: (context, index) {
-                  //       return Row(
-                  //         crossAxisAlignment: CrossAxisAlignment.start,
-                  //         children: [
-                  //           tvController.components[index],
-                  //         ],
-                  //       );
-                  //     },
-                  //   ),
+                  GestureDetector(
+                    onPanUpdate: (details) {
+                      setState(() {
+                        //     print(e);
+                        _offset = details.delta;
+                        _posicao3 = _posicao3 + _offset;
+                        // tvController.atualizar(
+                        //     id: e.id!, x: _posicao.dx, y: _posicao.dy);
+                        //         print(_posicao2.dy);
+                      });
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        top: _posicao3.dy.isNegative ? 10 : _posicao3.dy,
+                        left: _posicao3.dx.isNegative
+                            ? 10
+                            : _posicao3.dx > 1000
+                                ? 990
+                                : _posicao3.dx,
+                      ),
+                      child: Container(
+                        width: 100,
+                        height: 700,
+                        color: Colors.green,
+                      ),
+                    ),
+                  )
+
+                  // Wrap(
+                  //   children: tvController.components.map((e) {
+                  //     return GestureDetector(
+                  //       onPanUpdate: (details) {
+                  //         setState(() {
+                  //           //     print(e);
+                  //           _offset = details.delta;
+                  //           _posicao = _posicao + _offset;
+                  //           tvController.atualizar(
+                  //               id: e.id!, x: _posicao.dx, y: _posicao.dy);
+                  //         });
+                  //       },
+                  //       child: Padding(
+                  //         padding: EdgeInsets.only(
+                  //             top: tvController.components
+                  //                     .firstWhere(
+                  //                         (element) => element.id == e.id)
+                  //                     .positionY!
+                  //                     .isNegative
+                  //                 ? 100
+                  //                 : tvController.components
+                  //                     .firstWhere(
+                  //                         (element) => element.id == e.id)
+                  //                     .positionY!,
+                  //             left: tvController.components
+                  //                     .firstWhere(
+                  //                         (element) => element.id == e.id)
+                  //                     .positionX!
+                  //                     .isNegative
+                  //                 ? 100
+                  //                 : tvController.components
+                  //                     .firstWhere(
+                  //                         (element) => element.id == e.id)
+                  //                     .positionX!),
+                  //         child: e.component,
+                  //       ),
+                  //     );
+                  //   }).toList(),
                   // ),
-                ),
-              ))
+                ],
+              ),
+
+              //  Expanded(
+              //   child: ListView.builder(
+              //     itemCount: tvController.components.length,
+              //     scrollDirection: Axis.horizontal,
+              //     physics: NeverScrollableScrollPhysics(),
+              //     shrinkWrap: true,
+              //     itemBuilder: (context, index) {
+              //       return Row(
+              //         crossAxisAlignment: CrossAxisAlignment.start,
+              //         children: [
+              //           tvController.components[index],
+              //         ],
+              //       );
+              //     },
+              //   ),
+              // ),
+            ),
+          )
         ],
       );
 
